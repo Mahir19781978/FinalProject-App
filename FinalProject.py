@@ -1,9 +1,10 @@
 import re
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+pip install matplotlib scipy numpy pandas
 import streamlit as st
 from scipy import stats
+streamlit run FinalProject.py
 
 
 # -----------------------------
@@ -358,6 +359,7 @@ st.caption(
     "Tip: run this locally with `streamlit run histogram_fitter.py`. "
     "You can add more distributions by editing the `DISTRIBUTIONS` dictionary."
 )
+
 
 
 
