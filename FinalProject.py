@@ -1,11 +1,9 @@
 import re
 import numpy as np
 import pandas as pd
-pip install matplotlib scipy numpy pandas
+import matplotlib.pyplot as plt
 import streamlit as st
 from scipy import stats
-streamlit run FinalProject.py
-
 
 # -----------------------------
 # Config and distribution list
@@ -28,7 +26,6 @@ DISTRIBUTIONS = {
     "Triangular (triang)": stats.triang,
     "Pareto": stats.pareto,
 }
-
 
 # -----------------------------
 # Helper functions
@@ -135,7 +132,6 @@ def create_param_slider(name, default, min_val=None, max_val=None):
         step=float((max_val - min_val) / 200.0),
     )
 
-
 # -----------------------------
 # Sidebar: data input controls
 # -----------------------------
@@ -178,8 +174,8 @@ elif data_source == "Upload CSV":
 
 elif data_source == "Use example gamma data":
     st.sidebar.write("Using synthetic data from Gamma(5, loc=1, scale=1)")
-    rng = np.random.default_rng(12345)
-    data = stats.gamma.rvs(5, loc=1, scale=1, size=1000, random_state=rng)
+    # Generate synthetic gamma data
+    data = stats.gamma.rvs(5, loc=1, scale=1, size=1000, random_state=12345)
 
 # Display basic info about data
 st.sidebar.markdown("---")
@@ -340,7 +336,7 @@ with auto_tab:
     ax.plot(x, y_auto, label="Automatic fit", linewidth=2)
 
     # Manual fit curve (if available)
-    if 'frozen_manual' in locals() and frozen_manual is not None:
+    if "frozen_manual" in locals() and frozen_manual is not None:
         y_manual = frozen_manual.pdf(x)
         ax.plot(x, y_manual, linestyle="--", linewidth=2, label="Manual fit")
 
@@ -356,10 +352,6 @@ with auto_tab:
 # -----------------------------
 st.markdown("---")
 st.caption(
-    "Tip: run this locally with `streamlit run histogram_fitter.py`. "
+    "Tip: run this locally with `streamlit run FinalProject.py`. "
     "You can add more distributions by editing the `DISTRIBUTIONS` dictionary."
 )
-
-
-
-
